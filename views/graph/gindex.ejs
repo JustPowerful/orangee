@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <%- include("../base.ejs") %>
+    <title>Graph</title>
+  </head>
+  <body>
+    <br />
+
+    <div class="container">
+      <hr />
+      <center><h1>Last month</h1></center>
+      <div class="embed-responsive embed-responsive-16by9">
+        <iframe class="embed-responsive-item" src="/graph/lastmonth"></iframe>
+      </div>
+
+      <hr />
+
+      <center><h1>Last year</h1></center>
+      <div class="embed-responsive embed-responsive-16by9">
+        <iframe class="embed-responsive-item" src="/graph/lastyear"></iframe>
+      </div>
+
+      <hr />
+    </div>
+
+    <style></style>
+  </body>
+</html>

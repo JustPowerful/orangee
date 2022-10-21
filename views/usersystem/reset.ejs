@@ -1,0 +1,23 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <%- include("../base.ejs") %> 
+</head>
+<body>
+    <br> <br>
+    <div class="container">
+        <h1>Konto-Wiederherstellung</h1>
+        <p>Um Ihr Konto wiederherzustellen, geben Sie bitte unten Ihre Informationen ein: </p>
+        <form method="POST" action="/reset">
+            Nutzername: <br>
+            <input type="text" name="username" id="username" placeholder="Nutzername"> <br>
+            E-mail: <br>
+            <input type="email" name="email" id="username" placeholder="example@gmail.com"> <br> 
+
+            <i>Wir senden Ihnen eine E-Mail, um Ihre Identität zu bestätigen</i><br>
+            <button class="btn btn-warning">senden</button>
+        </form>
+    </div>
+</body>
+</html>

@@ -1,0 +1,220 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>User management</title>
+
+    <%- include("../base.ejs") %>
+    <link rel="stylesheet" href="/css/management/userlist.css" />
+  </head>
+  <body>
+    <br />
+    <center>
+      <h1><i class="lni lni-users"></i> User Administration</h1>
+    </center>
+
+    <br />
+
+    <div style="margin: 0 30px">
+      <% if(locals.verifiedPass != undefined && locals.usedUsername !=
+      undefined) { %> <% if(!locals.verifiedPass) { %>
+      <div
+        class="alert alert-danger alert-dismissible fade show col-sm-5 mx-auto"
+        role="alert"
+      >
+        <strong>falsches Passwort!</strong> Passwort stimmt nicht überein.
+        <button
+          type="button"
+          class="close"
+          data-dismiss="alert"
+          aria-label="Close"
+        >
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <br />
+      <% } else if(locals.usedUsername) { %>
+      <div
+        class="alert alert-danger alert-dismissible fade show col-sm-5 mx-auto"
+        role="alert"
+      >
+        <strong>Benutzername existiert!</strong> Bitte wählen Sie einen anderen
+        Benutzernamen
+        <button
+          type="button"
+          class="close"
+          data-dismiss="alert"
+          aria-label="Close"
+        >
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <br />
+      <% } %> <% } %> <% if(locals.isCreated != undefined) { %> <%
+      if(locals.isCreated) { %>
+      <div
+        class="alert alert-success alert-dismissible fade show col-sm-5 mx-auto"
+        role="alert"
+      >
+        <strong>Erfolgreich erstellt!</strong> Benutzer wurde erfolgreich
+        erstellt.
+        <button
+          type="button"
+          class="close"
+          data-dismiss="alert"
+          aria-label="Close"
+        >
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <br />
+      <% } %> <% } %>
+    </div>
+
+    <div class="container">
+      <form class="form-inline">
+        <input
+          class="form-control col-5 ml-auto mr-2"
+          type="search"
+          name="username"
+          placeholder="Username"
+          aria-label="Search"
+        />
+        <button class="btn btn-warning mr-auto" type="submit">
+          <i class="lni lni-search-alt"></i> Search
+        </button>
+      </form>
+      <br /><button
+        class="btn btn-primary"
+        type="submit"
+        style="display: block; margin: 0 auto; width: 50%"
+        onclick="toggleUserModal()"
+      >
+        <i class="lni lni-circle-plus"></i> Add a member
+      </button>
+      <hr />
+
+      <div class="user-modal" id="user-modal">
+        <div class="user-modal-display">
+          <button class="user-modal-close-btn" onclick="toggleUserModal()">
+            <i class="lni lni-close"></i>
+          </button>
+          <br />
+          <h1 style="color: black">
+            <i class="lni lni-users"></i> Add a member
+          </h1>
+          <form action="/useradd" method="POST">
+            <input
+              class="form-control"
+              type="text"
+              id="username"
+              placeholder="Username"
+              name="username"
+              required
+            />
+
+            <input
+              class="form-control"
+              type="password"
+              id="password"
+              placeholder="Password"
+              name="password"
+              required
+            />
+
+            <input
+              class="form-control"
+              type="password"
+              id="passwordcheck"
+              placeholder="Confirm password"
+              name="passwordcheck"
+              required
+            />
+
+            <!-- <input class="btn btn-dark" type="submit" value="Login"> -->
+            <button class="btn btn-dark" style="width: 100%">
+              <i class="lni lni-circle-plus"></i> Add
+            </button>
+          </form>
+        </div>
+      </div>
+
+      <% users.forEach((user) => { %> <% if (user.admin < 1) { %>
+      <div class="user">
+        <span><%= user.username %> </span>
+        <button
+          style="display: inline-block"
+          type="button"
+          class="btn btn-danger btn-sm pull-right"
+          data-toggle="modal"
+          data-target="#user-<%= user.id %>"
+          style="float: right"
+        >
+          <i class="lni lni-trash"></i> entfernen
+        </button>
+        <!-- <a href="/deleteuser/<%= user.id %>">Delete</a> -->
+      </div>
+
+      <!-- Verification box -->
+      <div
+        class="modal fade"
+        id="user-<%= user.id %>"
+        tabindex="-1"
+        role="dialog"
+        aria-labelledby="exampleModalLabel"
+        aria-hidden="true"
+        style="color: black"
+      >
+        <div class="modal-dialog" role="document">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h5 class="modal-title" id="exampleModalLabel">Entfernen ?</h5>
+              <button
+                type="button"
+                class="close"
+                data-dismiss="modal"
+                aria-label="Close"
+              >
+                <span aria-hidden="true">&times;</span>
+              </button>
+            </div>
+            <div class="modal-body">
+              Sie werden <strong><%= user.username %></strong> aus der Datenbank
+              entfernen, sind Sie sicher?
+            </div>
+            <div class="modal-footer">
+              <button
+                type="button"
+                class="btn btn-secondary"
+                data-dismiss="modal"
+              >
+                schließen
+              </button>
+              <a
+                type="button"
+                class="btn btn-danger"
+                href="/deleteuser/<%= user.id %>"
+                ><i class="lni lni-trash"></i> entfernen</a
+              >
+            </div>
+          </div>
+        </div>
+      </div>
+      <% } %> <% }) %>
+
+      <hr />
+    </div>
+
+    <script>
+      function toggleUserModal() {
+        const modal = document.getElementById("user-modal");
+        if (modal.style.display != "block") {
+          modal.style.display = "block";
+        } else {
+          modal.style.display = "none";
+        }
+      }
+    </script>
+  </body>
+</html>

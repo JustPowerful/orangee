@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <%- include("../base.ejs") %>
+  </head>
+  <body>
+    <br /><br /><br />
+    <center style="margin: 0 5px">
+      <h1><i class="lni lni-users"></i> Account settings</h1>
+      <br />
+      <br /><br />
+      <form action="/change" method="POST">
+        <p style="color: red">
+          Please set your email, as you can reset your password later using this
+          email:
+        </p>
+
+        <div class="col-sm-3 my-2">
+          <input
+            class="form-control"
+            type="email"
+            id="inlineFormInputName"
+            placeholder="Email"
+            name="email"
+            value="<%= user.email %> "
+          />
+        </div>
+        <h3 style="color: red">
+          <i class="fas fa-hand-paper"></i> Danger zone
+        </h3>
+        <p style="color: red">
+          If your email is not set, and you forget this password, you take full
+          responsibility of whats going to happen.
+        </p>
+        <div class="col-sm-3 my-2">
+          <input
+            class="form-control"
+            type="password"
+            id="inlineFormInputName"
+            placeholder="New password"
+            name="password"
+          />
+        </div>
+        <div class="col-sm-3 my-2">
+          <input
+            class="form-control"
+            type="password"
+            id="inlineFormInputName"
+            placeholder="Confirm the new password"
+            name="passwordcheck"
+          />
+        </div>
+        <br />
+        <!-- <input class="btn btn-dark" type="submit" value="Login"> -->
+        <button class="btn btn-success">
+          <i class="fas fa-check"></i> Save
+        </button>
+        <br /><br /><br /><br /><br />
+      </form>
+    </center>
+
+    <style>
+      .danger-divider {
+        border-top: 5px red dotted;
+      }
+    </style>
+  </body>
+</html>

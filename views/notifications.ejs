@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <%- include ("base.ejs") %>
+    <title>[Notifications] Notes</title>
+  </head>
+  <body>
+    <br />
+    <center><h1>Notifications</h1></center>
+    <br />
+    <div style="margin: 0 15px">
+      <div
+        class="container"
+        style="
+          background-color: rgb(233, 233, 233);
+          padding: 15px;
+          border-radius: 10px;
+        "
+      >
+        <h3>
+          <span class="badge bg-dark" style="color: white"
+            ><%= notes.length %></span
+          >
+          <span style="color: black">Unverified issues in:</span>
+        </h3>
+        <!-- For each notes in tasks -->
+        <ol style="color: black">
+          <% notes.forEach((task) => { %>
+          <li>
+            <a class="note-task" href="/notes/<%= task.id %> "
+              ><h5><%= task.title %></h5></a
+            >
+          </li>
+          <% }) %>
+        </ol>
+      </div>
+    </div>
+  </body>
+</html>

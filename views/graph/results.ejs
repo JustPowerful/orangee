@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+
+    
+    <canvas id="myChart"></canvas>
+    
+    
+    <script src="https://cdn.jsdelivr.net/npm/chart.js@2.8.0"></script>
+
+    <script>
+        var ctx = document.getElementById('myChart').getContext('2d');
+
+
+        // Random colors
+        var dynamicColors = function() {
+            var r = Math.floor(Math.random() * 255);
+            var g = Math.floor(Math.random() * 255);
+            var b = Math.floor(Math.random() * 255);
+            return "rgb(" + r + "," + g + "," + b + ")";
+        };
+
+        let labels = <%- JSON.stringify(labels) %>
+        let colors = []
+
+        labels.forEach(label => 
+        {
+            colors.push(dynamicColors())
+        })
+
+var chart = new Chart(ctx, {
+    // The type of chart we want to create
+    type: 'doughnut',
+
+    // The data for our dataset
+    data: {
+        labels: <%- JSON.stringify(labels) %>,
+        datasets: [{
+            label: 'My First dataset',
+            backgroundColor: colors,
+            borderColor: 'rgb(255, 255, 255)',
+            data: <%- JSON.stringify(values) %>
+        }]
+    },
+
+    // Configuration options go here
+    options: {}
+});
+    </script>
+</body>
+</html>

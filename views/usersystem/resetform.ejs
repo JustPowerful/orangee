@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <%- include('../base.ejs') %>
+</head>
+<body>
+    <br><br>
+    <div class="container">
+        <h1 style="display: inline;">Account Recovery</h1> <h3 style="display: inline; font-weight: 200;">: final step</h3>
+        <form method="POST" action="/reset/complete">
+            
+            <input style="visibility: hidden;" type="text" name="token" value="<%= token %>"> 
+            <br>
+            New Password:
+            <br> <input type="password" name="password" required>
+            <br> Re-type password:
+            <br> <input type="password" name="checkpassword" required>
+            <br><br><button class="btn btn-danger">Done!</button>
+        </form>
+    </div>
+</body>
+</html>

@@ -1,0 +1,179 @@
+<html>
+  <head>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <!-- Bootstraps -->
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/css/bootstrap.min.css"
+      integrity="sha384-TX8t27EcRE3e/ihU7zmQxVncDAy5uIKz4rEkgIXeMed4M0jlfIDPvg6uqKI2xXr2"
+      crossorigin="anonymous"
+    />
+    <script
+      src="https://code.jquery.com/jquery-3.5.1.slim.min.js"
+      integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj"
+      crossorigin="anonymous"
+    ></script>
+    <script
+      src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/js/bootstrap.bundle.min.js"
+      integrity="sha384-ho+j7jyWK8fNQe+A12Hb8AhRq26LrZ/JpcUGGOn+Y7RsweNrtN/tE3MoK7ZeZDyx"
+      crossorigin="anonymous"
+    ></script>
+    <link
+      rel="stylesheet"
+      href="/css/WebFont/font-css/LineIcons.css"
+      rel="stylesheet"
+    />
+    <script
+      src="https://kit.fontawesome.com/dc16dbb4ab.js"
+      crossorigin="anonymous"
+    ></script>
+    <link rel="stylesheet" href="/css/base.css" />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css"
+    />
+  </head>
+  <body>
+    <div class="navbar-original">
+      <div class="nav-left">
+        <a href="/"
+          ><h3><span class="logonumber">Orangee</span> Task Manager</h3></a
+        >
+        <div class="navlinks">
+          <% if (locals.loggedIn != undefined) { %> <% if(locals.loggedIn) { %>
+          <li>
+            <a href="/" class="navlink"
+              ><i class="icon fa-solid fa-house-user"></i> home</a
+            >
+          </li>
+          <li>
+            <a href="/tasks" class="navlink"
+              ><i class="icon fa-solid fa-bars-progress"></i> tasks</a
+            >
+          </li>
+          <li>
+            <a href="/notes" class="navlink"
+              ><i class="icon fa-solid fa-bell"></i> notifications
+              <span class="badge bg-danger"
+                ><%= locals.notification_number %></span
+              ></a
+            >
+          </li>
+          <li>
+            <a href="/userlist" class="navlink"
+              ><i class="icon fa-solid fa-address-book"></i> userlist</a
+            >
+          </li>
+          <li>
+            <a href="/history" class="navlink"
+              ><i class="icon fa-solid fa-clock-rotate-left"></i> history</a
+            >
+          </li>
+          <li>
+            <a href="/graph" class="navlink"
+              ><i class="icon fa-solid fa-chart-pie"></i> graph</a
+            >
+          </li>
+          <% } %> <% } %>
+        </div>
+      </div>
+
+      <div class="nav-right">
+        <% if (locals.loggedIn != undefined) { %> <% if(locals.loggedIn) { %>
+        <button id="pf-btn" class="pf-btn">
+          <i class="fa-solid fa-user"></i> <%= locals.currentUsername %>
+          &NonBreakingSpace;&NonBreakingSpace;&NonBreakingSpace;
+          <i class="fa-solid fa-caret-down"></i>
+        </button>
+        <div
+          id="profile-menu"
+          class="profile-menu animate__animated animate__fadeInRight hidden"
+        >
+          <a href="/user/settings"><i class="fa-solid fa-gear"></i> settings</a>
+          <a href="/logout"
+            ><i class="fa-solid fa-arrow-right-from-bracket"></i> logout</a
+          >
+        </div>
+        <% } %> <% } %>
+
+        <button style="margin-left: 5px" id="nav-btn" class="nav-btn">
+          <i class="fa-solid fa-bars"></i>
+        </button>
+      </div>
+    </div>
+
+    <div id="phone-menu" class="phone-menu">
+      <% if (locals.loggedIn != undefined) { %> <% if(locals.loggedIn) { %>
+      <h3 style="color: #ffb300; margin-left: 5px; font-size: 20px">
+        Site navigation
+      </h3>
+      <li>
+        <a href="/" class="navlink"
+          ><i class="icon fa-solid fa-house-user"></i> home</a
+        >
+      </li>
+      <li>
+        <a href="/tasks" class="navlink"
+          ><i class="icon fa-solid fa-bars-progress"></i> aufgaben</a
+        >
+      </li>
+      <li>
+        <a href="/notes" class="navlink"
+          ><i class="icon fa-solid fa-bell"></i> notizenliste
+          <span class="badge bg-danger"
+            ><%= locals.notification_number %></span
+          ></a
+        >
+      </li>
+      <li>
+        <a href="/userlist" class="navlink"
+          ><i class="icon fa-solid fa-address-book"></i> benutzerliste</a
+        >
+      </li>
+      <li>
+        <a href="/history" class="navlink"
+          ><i class="icon fa-solid fa-clock-rotate-left"></i> history</a
+        >
+      </li>
+      <li>
+        <a href="/graph" class="navlink"
+          ><i class="icon fa-solid fa-chart-pie"></i> graph</a
+        >
+      </li>
+
+      <h3 style="color: #ffb300; margin-left: 5px; font-size: 20px">
+        User section
+      </h3>
+      <li>
+        <a href="/user/settings" class="navlink"
+          ><i class="fa-solid fa-gear"></i> User settings</a
+        >
+      </li>
+      <li>
+        <a href="/graph" class="navlink"
+          ><i class="fa-solid fa-arrow-right-from-bracket"></i> Logout</a
+        >
+      </li>
+
+      <% } %> <% } %>
+    </div>
+    <!--   Example of logged in             
+                  <% if (locals.loggedIn != undefined) { %>
+                    <% if(locals.loggedIn) { %>
+                      
+                      <% } %> 
+  
+                    <% } %>
+                   -->
+    <script>
+      $(document).ready(() => {
+        $("#pf-btn").click(() => {
+          $("#profile-menu").toggleClass("hidden");
+        });
+        $("#nav-btn").click(() => {
+          $("#phone-menu").toggleClass("slide-down");
+        });
+      });
+    </script>
+  </body>
+</html>

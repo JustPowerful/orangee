@@ -1,0 +1,35 @@
+table {
+    text-align: left;
+    position: relative;
+    border-collapse: collapse; 
+}
+th, td {
+    padding: 0.25rem;
+}
+tr.red th {
+    background: red;
+    color: white;
+}
+tr.green th {
+    background: green;
+    color: white;
+}
+tr.purple th {
+    background: purple;
+    color: white;
+}
+
+tr {
+    text-align: center;
+    background-color: rgb(202, 202, 202);
+}
+
+th {
+    background: rgb(65, 65, 65);
+    color: white;
+    text-align: center;
+    position: sticky;
+    top: 0; /* Don't forget this, required for the stickiness */
+    box-shadow: 0 2px 2px -1px rgba(0, 0, 0, 0.4);
+}
+

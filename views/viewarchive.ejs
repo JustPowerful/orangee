@@ -1,0 +1,15 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Archive</title>
+</head>
+<body>
+    <!-- Select the subtask you want to view -->
+
+    <% subtasks.forEach((subtask) => { %>
+        <span class="archive-tag">Archive <%= subtask.parent_id %></span> <a href="/viewarchive/<%= subtask.parent_id %> ">View archive</a> <br>
+    <% }) %>
+</body>
+</html>

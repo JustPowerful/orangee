@@ -1,0 +1,197 @@
+@import url('https://fonts.googleapis.com/css2?family=Cairo:wght@200;300;400;500;600;700;800;900&display=swap');
+
+* {
+    font-family: 'Cairo', sans-serif;
+}
+
+body
+{
+    color: white;
+    background-color: #1B1B1B;
+}
+
+.navbar-original
+{
+    z-index: 999 !important;
+    background-color: #000000;
+    color: #FFFFFF;
+    padding: 10px 17px;
+    display: flex;
+    width: 100%;
+    justify-content: space-between;
+}
+
+.nav-left 
+{
+    display: flex;
+}
+
+.nav-right {
+    display: flex;
+}
+
+.navbar-original h3 {
+    display: inline-block;
+    margin: 0;
+    font-size: 22px;
+    color: #FFFFFF !important;
+}
+
+.navlinks 
+{
+    display: flex;
+    list-style: none;
+    margin: auto 18px;
+}
+.navlinks .navlink
+{
+    margin: 0 15px;
+    text-decoration: none;
+    display: inline-block;
+    color: #FFFFFF;
+    font-size: 18px;
+    font-weight: 200;
+    transition: color 0.2s;
+}
+
+.navlinks .navlink:hover
+{
+    color: #ffb300;
+}
+
+.navlinks .icon 
+{
+    font-size: 16px;
+}
+
+.logonumber {
+    font-size: 34px;
+    font-weight: 700;
+    color: #FFB800;
+}
+
+.pf-btn
+{
+    background-color: rgba(245, 222, 179, 0);
+    color: #FFFFFF;
+    border: 1px solid white;
+    border-radius: 14px;
+    transition: background-color 0.3s;
+    transition: color 0.3s;
+    padding: 0 15px;
+    text-align: center;
+}
+
+.pf-btn:hover
+{
+    background-color: rgb(255, 255, 255);
+    color: rgb(0, 0, 0);
+}
+
+.pf-btn:focus
+{
+    outline: none;
+}
+
+.profile-menu
+{
+    position: absolute;
+    background-color: #ffb300;
+    right: 13px;
+    top: 55px;
+    padding: 5px 0;
+    border-radius: 5px;
+
+}
+
+.profile-menu a
+{
+    text-decoration: none;
+    color: #553e00;
+    display: block;
+    padding: 0 30px;
+}
+
+.profile-menu a:hover
+{
+    background-color: #ffd470;
+}
+
+.hidden 
+{
+    display: none;
+}
+
+.nav-btn
+{
+    display: none;
+    background-color: rgba(245, 222, 179, 0);
+    color: #FFFFFF;
+    border: 1px solid white;
+    border-radius: 14px;
+    transition: background-color 0.3s;
+    transition: color 0.3s;
+    padding: 0 15px;
+    text-align: center;
+}
+
+.phone-menu
+{
+    z-index: 1 !important;
+    position: absolute;
+    width: 100%;
+    list-style: none;
+    background-color: #000000;
+    
+    transform: scaleY(0);
+    transform-origin: top;
+    transition: transform 0.2s;
+}
+
+.slide-down
+{
+    transform: scaleY(1);
+}
+
+.phone-menu a
+{
+    display: block;
+    font-size: 18px;
+    font-weight: 200;
+    color: #FFFFFF;
+    text-decoration: none;
+    padding: 0 0 5px 15px;
+    
+}
+
+.phone-menu a:hover
+{
+    background-color: #ffffff51;
+}
+
+@media (max-width: 1100px) {
+
+    .profile-menu
+    {
+        position: absolute;
+        top: 55px !important;
+        right: 60px;
+    }
+
+    .navlinks
+    {
+        display: none;
+    }
+
+    .nav-btn
+    {
+        display: block;
+    }
+}
+
+@media (max-width: 404px) {
+    .pf-btn
+    {
+        display: none;
+    }
+}

@@ -1,0 +1,167 @@
+body {
+    -webkit-touch-callout: none;
+    -webkit-user-select: none;
+    -khtml-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+}
+
+.task-form-container {
+    background-color: rgb(41, 41, 41);
+    color: white;
+    padding: 15px 15px 1px 15px;
+    border-radius: 15px;
+    margin-bottom: 50px;
+}
+
+.task-form-container label {
+    margin-bottom: 0;
+}
+
+#taskList {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-evenly;
+}
+
+.task {
+    cursor: pointer;
+    display: block;
+    border-radius: 4px;
+    padding: 2px 15px;
+    background-color: rgb(0, 0, 0);
+    color: white;
+    margin-bottom: 0.5rem;
+
+    transition: background-color 1.5s;
+}
+
+.toggleButton {
+    outline: none;
+    border: none;
+    background-color: rgba(255, 255, 255, 0);
+    color: white;
+    border-radius: 50%;
+}
+
+
+.toggleButton:focus {
+    outline: none;
+}
+
+/* Makes the text empty if the resolution hit the max value */
+@media (max-width: 768px) {
+    .text-display {
+        display: none;
+    }
+}
+
+
+.red {
+    background-color: rgb(41, 41, 41);
+}
+
+.orange {
+    background-color: rgb(251, 156, 30);
+}
+
+.green {
+    background-color: rgb(37, 180, 37);
+}
+
+.task .title {
+    display: inline-block;
+    text-align: center;
+    margin-top: 10px;
+    margin-right: 10px;
+    
+}
+
+
+.subtask {
+    border-radius: 5px;
+    padding: 10px 10px;
+    display: block;
+    margin: 15px 0;
+    background-color: white;
+    color: black;
+}
+
+.subtitle {
+    display: inline-block;
+    margin: 2px 0 5px 0;
+    font-weight: 700;
+    font-size: 20px;
+}
+
+/* sub task forms */
+.stForm input[type="text"] {
+    width: 85%;
+    margin: 0 auto;
+}
+
+.subtitle {
+    display: inline-block;
+    margin-right: 15px;
+}
+
+
+.completeBtn {
+    border-radius: 15px;
+    outline: none;
+    border: none;
+
+    background-color: green;
+    color: white;
+
+    cursor: pointer;
+    display: inline-block;
+    margin-right: 2px;
+}
+
+.completed {
+    background-color: rgb(150, 255, 137) !important;
+    color: rgba(0, 0, 0, 0.548) !important;
+}
+
+.completer {
+    
+    border-radius: 5px;
+    text-transform: capitalize;
+    background-color: white;
+    margin-right: 10px;
+    padding: 0 2px;
+}
+
+.note-btn {
+    margin-bottom: 5px;
+}
+
+.delete-button {
+    border: none;
+    color: white;
+    background-color: red;
+    padding: 5px;
+    border-top-left-radius: 15px;
+    border-top-right-radius: 15px;
+}
+
+.manager 
+{
+    padding: 0 10rem;
+}
+
+@media (max-width: 815px)
+{
+    .manager
+    {
+       padding: 0 6px; 
+    }
+}
+
+.period-dropdown {
+    padding: 10px;
+    border-radius: 10px;
+    margin: 15px 0;
+}

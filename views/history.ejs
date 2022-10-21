@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <%- include("base.ejs") %>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>History</title>
+    <link rel="stylesheet" href="/css/history.css" />
+  </head>
+  <body>
+    <style>
+      table,
+      th,
+      td {
+        border: 2px solid white;
+      }
+    </style>
+
+    <div class="container">
+      <br />
+      <form>
+        <!-- <input type="number" id="day" placeholder="Day" max="31"> -->
+        <select name="day" id="day">
+          <% for (let i = 0; i <= 31; i++) { %> <% if(i === 0) { %>
+          <option value="0">-- Day --</option>
+          <% } %> <% if(i > 0) { %>
+          <option value="<%= i %>"><%= i %></option>
+          <% } %> <% } %>
+        </select>
+        <!-- <input type="number" id="month" placeholder="Month"> -->
+        <select name="month" id="month">
+          <% for (let i = 0; i <= 12; i++) { %> <% if(i === 0) { %>
+          <option value="0">-- Month --</option>
+          <% } %> <% if(i > 0) { %>
+          <option value="<%= i %>"><%= i %></option>
+          <% } %> <% } %>
+        </select>
+
+        <!-- <input type="number" id="year" placeholder="Year"> -->
+        <select name="year" id="year">
+          <% for (let i = 2019; i <= new Date().getFullYear(); i++) { %> <% if(i
+          === 2019) { %>
+          <option value="0">-- Year --</option>
+          <% } %> <% if(i > 0) { %>
+          <option value="<%= i %>"><%= i %></option>
+          <% } %> <% } %>
+        </select>
+
+        <input type="text" id="username" placeholder="Username" />
+        <input id="searchBtn" type="submit" value="Search" />
+      </form>
+      <br />
+
+      <div class="table-responsive">
+        <table id="historyElement"></table>
+      </div>
+    </div>
+
+    <script>
+      function dateToNiceString(myDate) {
+        var month = [
+          "Januar",
+          "Februar",
+          "März",
+          "April",
+          "Mai",
+          "Juni",
+          "Juli",
+          "August",
+          "September",
+          "Oktober",
+          "November",
+          "Dezember",
+        ];
+        return (
+          month[myDate.getMonth()] +
+          " " +
+          myDate.getDate() +
+          " " +
+          myDate.getFullYear()
+        );
+      }
+
+      let hList = document.getElementById("historyElement");
+
+      // function dateToNiceString(myDate){
+      //     var month = ["January","February","March","April","May","June","July","August","September","October","November","December",];
+      //     return month[myDate.getMonth()]+" "+myDate.getDate()+" "+myDate.getFullYear();
+      // }
+
+      async function loadHistory() {
+        while (hList.firstChild) hList.removeChild(hList.firstChild);
+        let tableCol = document.createElement("tr");
+        tableCol.classList.add("titleCol");
+        tableCol.innerHTML =
+          '<th><i class="lni lni-checkmark"></i> Status </th> <th><i class="lni lni-user"></i> Completer</th> <th><i class="lni lni-list"></i> Task</th> <th><i class="lni lni-calendar"></i> Date of completion</th>';
+        hList.appendChild(tableCol);
+        let day = document.getElementById("day").value;
+        let month = document.getElementById("month").value;
+        let year = document.getElementById("year").value;
+        let username = document.getElementById("username").value;
+
+        let response = await fetch(
+          `/fetchhistory?day=${day}&month=${month}&year=${year}&username=${username}`
+        );
+        let data = await response.json();
+
+        console.log(data);
+
+        data.forEach(async (line) => {
+          let historyTable = document.createElement("tr");
+
+          historyTable.classList.add("historyTable");
+
+          let response = await fetch(`/fetchuserbyid?id=${line.completer_id}`);
+          let data = await response.json();
+
+          historyTable.innerHTML = `
+                    <td>${
+                      line.completer_id
+                        ? "<i class='fas fa-check'></i>"
+                        : "<i class='fas fa-times'></i>"
+                    }</td>
+                    <td>${data.username}</td>
+                    <td>${line.title}</td>
+                    <td>${dateToNiceString(new Date(line.completion_date))} ${
+            line.completion_time
+          }</td>
+                `;
+
+          hList.appendChild(historyTable);
+        });
+      }
+
+      document.getElementById("searchBtn").addEventListener("click", (e) => {
+        e.preventDefault();
+        loadHistory();
+      });
+    </script>
+  </body>
+</html>
