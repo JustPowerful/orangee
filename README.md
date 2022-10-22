@@ -2,7 +2,7 @@
 <img src="https://user-images.githubusercontent.com/50250163/197360453-91f23e81-ca20-44c2-8c0e-232ba9fc3a55.png" width="220"/>
 </p>
 <p align="center">
-Orangee is an open-source task management system for companies, and even individuals, its flexible and great for small projects, tasks and business. it's source code is written in JavaScript NodeJS and it uses EJS as a view render engine, as for the database Orangee uses MySQL.
+Orangee is an open-source task management system, its flexible and great for small projects. it's source code is written in JavaScript NodeJS and it uses EJS as a view render engine, as for the database Orangee uses MySQL.
 </p>
 
 ## Authors & Contributers:
