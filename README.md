@@ -6,7 +6,7 @@ Orangee is an open-source task management system, its flexible and great for sma
 </p>
 
 ## Authors & Contributers:
-- <a href="https://www.github.com/JustPowerful">JustPowerful (Ahmed Amine Doudech)</a> (Creator)
+- <a href="https://www.github.com/JustPowerful">JustPowerful (Ahmed Amine Doudech)</a> (Author)
 
 ## Examples:
 ### Login:
