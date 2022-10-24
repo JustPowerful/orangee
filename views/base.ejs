@@ -34,10 +34,27 @@
     />
   </head>
   <body>
+    <style>
+      @import url("https://fonts.googleapis.com/css2?family=M+PLUS+Rounded+1c:wght@700&display=swap");
+      .navbar-title:hover {
+        color: #f26522 !important;
+      }
+      .navbar-title {
+        font-family: "M PLUS Rounded 1c", sans-serif !important;
+      }
+    </style>
     <div class="navbar-original">
       <div class="nav-left">
-        <a href="/"
-          ><h3><span class="logonumber">Orangee</span> Task Manager</h3></a
+        <a
+          style="
+            display: flex;
+            flex-direction: row;
+            align-items: center;
+            text-decoration: none;
+          "
+          href="/"
+          ><img src="/images/logo.png" alt="logo" width="30" />
+          <h3 class="navbar-title" style="margin-left: 10px">Orangee</h3></a
         >
         <div class="navlinks">
           <% if (locals.loggedIn != undefined) { %> <% if(locals.loggedIn) { %>
