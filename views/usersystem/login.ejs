@@ -1,41 +1,72 @@
 <html>
-    <head>
-        
-        <%- include("../base.ejs") %> 
-    </head>
-    <body>
+  <head>
+    <%- include("../base.ejs") %>
+    <link rel="stylesheet" href="/css/login.css" />
+  </head>
+  <body>
+    <center>
+      <br />
+      <br />
+      <br />
 
-        <center>
+      <% if(locals.errorMessage) { %>
+      <div
+        class="alert alert-danger alert-dismissible fade show col-sm-5 mx-auto"
+        role="alert"
+      >
+        <strong>Login error!</strong> <%= errorMessage %>
+        <button
+          type="button"
+          class="close"
+          data-dismiss="alert"
+          aria-label="Close"
+        >
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <% } %>
 
-            <br> 
-            <br>
-            <br>
+      <div class="form-container">
+        <h2>
+          <span style="font-size: 22px"
+            ><i class="fa-solid fa-right-to-bracket"></i
+          ></span>
+          Login
+        </h2>
 
-            <% if(locals.errorMessage) { %>
-                <div class="alert alert-danger alert-dismissible fade show col-sm-5 mx-auto" role="alert">
-                    <strong>Login error!</strong> <%= errorMessage %> 
-                    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-                      <span aria-hidden="true">&times;</span>
-                    </button>
-                  </div>
-            <% } %> 
-
-            <h2><i class="fas fa-user-lock"></i> Einloggen </h2>
-            
-            <form action="/login" method="POST">
-                <!-- col-xs-3 -->
-                <div class="col-sm-3 my-2">
-                    <input class="form-control" type="text"  id="inlineFormInputName" placeholder="Nutzername" name="username" required>
-                </div>
-                <div class="col-sm-3 my-2">
-                    <input class="form-control" type="password"  id="inlineFormInputName" placeholder="Passwort" name="password" required>
-                </div>
-                <div class="col-sm-3 my-2"><input class="btn btn-dark w-100" type="submit" value="Login"></div>
-                <hr width="150">
-                <a style="display: block; line-height: 10px;" href="/reset">Passwort vergessen?</a>
-            </form>
-
-        </center>
-        
-    </body>
+        <form action="/login" method="POST">
+          <!-- col-xs-3 -->
+          <div class="my-2 input-container">
+            <div class="input-icon"><i class="fa-solid fa-user"></i></div>
+            <input
+              type="text"
+              id="inlineFormInputName"
+              placeholder="Username"
+              name="username"
+              required
+            />
+          </div>
+          <div class="my-2 input-container">
+            <div class="input-icon"><i class="fa-solid fa-lock"></i></div>
+            <input
+              type="password"
+              id="inlineFormInputName"
+              placeholder="Password"
+              name="password"
+              required
+            />
+          </div>
+          <button type="submit">
+            Continue
+            <span style="position: relative; top: 1px; margin-left: 2px"
+              ><i class="fa-solid fa-right-long"></i
+            ></span>
+          </button>
+        </form>
+      </div>
+      <a style="display: block; margin-top: 10px; color: #ffb28f" href="/reset"
+        >Forgot your password?</a
+      >
+    </center>
+  </body>
 </html>
