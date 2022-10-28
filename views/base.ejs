@@ -76,6 +76,7 @@
               ></a
             >
           </li>
+          <% if(locals.isAdmin) { %>
           <li>
             <a href="/userlist" class="navlink"
               ><i class="icon fa-solid fa-address-book"></i> userlist</a
@@ -91,7 +92,7 @@
               ><i class="icon fa-solid fa-chart-pie"></i> graph</a
             >
           </li>
-          <% } %> <% } %>
+          <% } %> <% } %> <% } %>
         </div>
       </div>
 
@@ -106,7 +107,9 @@
           id="profile-menu"
           class="profile-menu animate__animated animate__fadeInRight hidden"
         >
+          <% if(locals.isAdmin) { %>
           <a href="/user/settings"><i class="fa-solid fa-gear"></i> settings</a>
+          <% } %>
           <a href="/logout"
             ><i class="fa-solid fa-arrow-right-from-bracket"></i> logout</a
           >
