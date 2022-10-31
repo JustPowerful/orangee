@@ -7,10 +7,53 @@
     <br /><br />
     <div class="container">
       <% if(currentUser.admin > 0) { %>
+      <div class="task-modal hidden" id="task-modal">
+        <form action="/addt" method="POST">
+          <label for="tasktitle">Title</label>
+          <input
+            type="text"
+            id="tasktitle"
+            name="title"
+            placeholder="Specify the task title"
+            required
+          />
+          <label for="taskresettime">Reset every </label>
+          <select name="period" id="taskresettime">
+            <option value="day">Day</option>
+            <option value="week">Week</option>
+            <option value="fortnight">Fortnight</option>
+            <option value="month">Month</option>
+          </select>
+          <div class="btn-container">
+            <button class="save-button" type="submit">
+              <i class="fa-solid fa-floppy-disk"></i>
+            </button>
+            <button class="cancel-button" id="cancel-button">
+              <i class="fa-solid fa-ban"></i>
+            </button>
+          </div>
+        </form>
+      </div>
+      <button class="add-button" id="add-button">
+        <i class="fa-solid fa-plus"></i>
+      </button>
 
-      <div class="task-form-container">
+      <script>
+        const addButton = document.getElementById("add-button");
+        const taskModal = document.getElementById("task-modal");
+        const cancelBtn = document.getElementById("cancel-button");
+
+        addButton.addEventListener("click", (event) => {
+          taskModal.classList.toggle("hidden");
+        });
+
+        cancelBtn.addEventListener("click", (event) => {
+          event.preventDefault();
+          taskModal.classList.toggle("hidden");
+        });
+      </script>
+      <!-- <div class="task-form-container">
         <h3 style="font-size: 20px"><i class="fas fa-tasks"></i> Task Form</h3>
-        <!-- Adding tasks here -->
         <form class="form" method="POST" action="/addt">
           <div class="form-group mx-sm-3 mb-2">
             <label for="tasktitleinput">Main task title: </label>
@@ -46,13 +89,31 @@
             </button>
           </div>
         </form>
-      </div>
+      </div> -->
 
       <% } %>
 
       <!-- Displaying daily tasks here -->
       <% const dailyTasks = tasks.filter((task) => { return task.period ==
-      "day"}) %> <% if(dailyTasks.length > 0) { %>
+      "day"}) %> <% if (dailyTasks.length <= 0) {%>
+      <center>
+        <h1>Empty task list...</h1>
+        <p style="padding: 0">
+          Please press
+          <span
+            style="
+              border-radius: 50%;
+              background-color: #f26522;
+              margin: 0;
+              padding: 5px 10px;
+              font-size: 11px;
+            "
+            ><i class="fa-solid fa-plus"></i
+          ></span>
+          to add a task
+        </p>
+      </center>
+      <%}%> <% if(dailyTasks.length > 0) { %>
       <div class="period-dropdown">
         <h2>Daily</h2>
         <% tasks.forEach((task) => { %> <% if(task.period == "day") {%>
